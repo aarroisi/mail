@@ -1,0 +1,53 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2>{{ request.user.email }}</h2>
+
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div id="emails-view">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form" action="javascript:void(0);">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+
+    <div id="view-email">
+        <h3 id="view-subject"></h3>
+        <button id='reply-button' class="btn btn-outline-primary btn-sm">Reply</button>
+        <button id='archive-button' class="btn btn-primary btn-sm"></button>
+        <div class="form-group">
+            Sent at: <input disabled id="view-timestamp" class="form-control">
+        </div>
+        <div class="form-group">
+            From: <input disabled id="view-from" class="form-control">
+        </div>
+        <div class="form-group">
+            To: <input disabled id="view-to" class="form-control">
+        </div>
+        Message: <textarea disabled class="form-control" id="view-body"></textarea>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

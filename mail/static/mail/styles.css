@@ -1,0 +1,17 @@
+textarea {
+    min-height: 400px;
+}
+
+.email_instance {
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0.3rem;
+}
+
+.read {
+    background-color: lightgray;
+}
+
+button {
+    margin: 0.3rem 0rem 0.3rem 0rem;
+}
